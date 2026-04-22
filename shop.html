@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical Items | Stqckzz Resell</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="cart-overlay" class="cart-overlay"></div>
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h2>YOUR CART</h2>
+            <button id="close-cart" class="close-btn">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-shipping-selection">
+            <label for="cart-shipping-select" class="cart-shipping-label">Select Delivery Speed</label>
+            <select id="cart-shipping-select">
+                <option value="15" data-label="Standard (12-19 Days)">📦 Standard Delivery — $15.00</option>
+                <option value="35" data-label="Express (5-10 Days)">🚀 Express Delivery — $35.00</option>
+            </select>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="total-price">$0.00</span>
+            </div>
+            <button class="btn checkout-btn">Checkout Now</button>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html">STQCKZZ<br><span>RESELL</span></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="vendors.html">Vendors</a></li>
+                <li><div class="cart-icon" onclick="openCart()" style="cursor: pointer;">🛒</div></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" style="padding: 40px 0;">
+        <h1>FULL <span>CATALOG</span></h1>
+        <p>Premium streetwear and exclusive drops.</p>
+    </header>
+
+    <section id="shop-grid" class="product-grid"></section>
+
+    <script type="module" src="js/cart.js"></script>
+    <script type="module">
+        import inventory from './js/products.js';
+        const grid = document.getElementById('shop-grid');
+        const physicalItems = inventory.filter(item => item.type === 'physical');
+    
+        physicalItems.forEach(item => {
+            const oldPriceHTML = item.oldPrice ? `<span class="old-price">$${item.oldPrice}</span>` : '';
+            grid.innerHTML += `
+                <div class="card">
+                    ${item.oldPrice ? '<div class="sale-tag">SALE</div>' : ''}
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="card-info">
+                        <h3>${item.name}</h3>
+                        <div class="price-row">
+                            <span class="current-price">$${item.price}</span>
+                            ${oldPriceHTML}
+                        </div>
+                        <a href="product-detail.html?id=${item.id}" class="btn">View Product</a>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

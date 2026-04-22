@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Stqckzz Resell</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="cart-overlay" class="cart-overlay"></div>
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h2>YOUR CART</h2>
+            <button id="close-cart" class="close-btn">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-shipping-selection">
+            <label for="cart-shipping-select" class="cart-shipping-label">Select Delivery Speed</label>
+            <select id="cart-shipping-select">
+                <option value="15" data-label="Standard (12-19 Days)">📦 Standard Delivery — $15.00</option>
+                <option value="35" data-label="Express (5-10 Days)">🚀 Express Delivery — $35.00</option>
+            </select>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="total-price">$0.00</span>
+            </div>
+            <button class="btn checkout-btn">Checkout Now</button>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html">STQCKZZ<br><span>RESELL</span></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="vendors.html">Vendors</a></li>
+                <li><div class="cart-icon" onclick="openCart()" style="cursor: pointer;">🛒</div></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="detail-wrapper">
+        <div class="product-showcase glass-panel">
+            <div class="image-box">
+                <img id="main-img" src="" alt="Product Image">
+                <div class="glow-effect"></div>
+            </div>
+            <div class="info-box">
+                <div id="p-status" class="status-tag"></div>
+                <h1 id="p-name">Loading...</h1>
+                <div class="price-wrap">
+                    <span id="p-price" class="neon-text"></span>
+                    <span class="tax-note">Authenticity Guaranteed</span>
+                </div>
+                <p id="p-desc" class="description-text"></p>
+                <div class="variation-section">
+                    <h4>Select Colorway</h4>
+                    <div id="color-options" class="option-grid"></div>
+                    <h4>Select Size (US)</h4>
+                    <div id="size-options" class="option-grid"></div>
+                </div>
+                <div class="action-area" style="margin-top: 30px;">
+                    <button class="btn buy-now">Add to Cart</button>
+                    <p class="secure-note">✍🏾✅ Write a review below!</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="reviews-wrapper glass-panel">
+            <h2>COMMUNITY FEEDBACK</h2>
+            <div class="review-split">
+                <div class="form-side">
+                    <h3>Write a Review</h3>
+                    <form id="review-form" class="neon-form">
+                        <input type="text" id="rev-name" placeholder="Full Name" required>
+                        <select id="rev-rating">
+                            <option value="5">★★★★★ (5 Stars)</option>
+                            <option value="4">★★★★☆ (4 Stars)</option>
+                            <option value="3">★★★☆☆ (3 Stars)</option>
+                            <option value="2">★★☆☆☆ (2 Stars)</option>
+                            <option value="1">★☆☆☆☆ (1 Star)</option>
+                        </select>
+                        <textarea id="rev-text" placeholder="Share your experience..." rows="4"></textarea>
+                        <button type="submit" class="btn secondary">Post Review</button>
+                    </form>
+                </div>
+                <div class="display-side" id="display-reviews">
+                    <p class="no-reviews">No reviews yet. Be the first!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="js/product-detail.js"></script>
+</body>
+</html>

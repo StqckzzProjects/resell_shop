@@ -1,0 +1,444 @@
+/* 1. CONFIGURATION & VARIABLES */
+:root {
+    --bg-dark: #050505;
+    --card-bg: #121212;
+    --accent-blue: #00d2ff;
+    --accent-purple: #9d50bb;
+    --text-main: #ffffff;
+    --text-dim: #a0a0a0;
+    --gradient-primary: linear-gradient(135deg, #00d2ff 0%, #9d50bb 100%);
+    --glass: rgba(20, 20, 20, 0.7);
+    --border-white: rgba(255, 255, 255, 0.1);
+}
+
+/* 2. RESET & BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding-top: 120px; /* Space for the floating nav */
+    line-height: 1.6;
+}
+
+/* 3. NAVIGATION (Capsule Style) */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1100px;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--border-white);
+    border-radius: 100px;
+    padding: 12px 35px;
+    z-index: 2000;
+}
+
+.nav-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.logo a { 
+    text-decoration: none; 
+    color: white; 
+    font-weight: 900; 
+    text-align: center; 
+    display: block; 
+    line-height: 1; 
+    text-transform: uppercase;
+}
+
+.logo span { 
+    color: var(--accent-blue); 
+    font-size: 0.75rem; 
+    letter-spacing: 3px; 
+}
+
+.nav-links { display: flex; list-style: none; gap: 25px; }
+.nav-links a { 
+    text-decoration: none; 
+    color: var(--text-dim); 
+    font-size: 0.85rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    transition: 0.3s; 
+}
+
+.nav-links a:hover { 
+    color: var(--accent-blue);
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+/* 4. HERO SECTION */
+.hero { text-align: center; padding: 100px 5% 60px; }
+.hero h1 { font-size: 3.5rem; text-transform: uppercase; font-weight: 900; line-height: 1.1; }
+.hero h1 span { 
+    background: var(--gradient-primary); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+}
+
+/* 5. PRODUCT GRID & CARDS */
+.product-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; 
+    padding: 40px 8%; 
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover { 
+    transform: translateY(-10px); 
+    border-color: var(--accent-blue); 
+    box-shadow: 0 10px 40px rgba(0, 210, 255, 0.15); 
+}
+
+.card img { 
+    width: 100%; 
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 18px; 
+    margin-bottom: 20px; 
+}
+
+/* PRICE STYLING */
+.price-row {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.current-price {
+    color: var(--accent-blue);
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+.old-price {
+    color: var(--text-dim);
+    text-decoration: line-through;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+/* For the Product Detail Page specifically */
+.price-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+.tax-note {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+/* 6. BUTTONS */
+.btn {
+    display: block; 
+    width: 100%; 
+    padding: 16px; 
+    border-radius: 14px; 
+    border: none;
+    background: var(--gradient-primary); 
+    color: white; 
+    font-weight: 800;
+    text-transform: uppercase; 
+    cursor: pointer; 
+    text-decoration: none; 
+    text-align: center;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+}
+
+.btn.secondary {
+    background: transparent;
+    border: 1px solid var(--accent-blue);
+}
+
+/* 7. PRODUCT DETAIL (Premium Layout) */
+.detail-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 5%;
+}
+
+.glass-panel {
+    background: rgba(25, 25, 25, 0.4);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--border-white);
+    border-radius: 32px;
+    padding: 50px;
+    margin-bottom: 40px;
+}
+
+.product-showcase {
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.image-box {
+    flex: 1;
+    min-width: 320px;
+    position: relative;
+}
+
+.image-box img {
+    width: 100%;
+    border-radius: 24px;
+    z-index: 2;
+    position: relative;
+}
+
+.glow-effect {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%; height: 70%;
+    background: var(--accent-blue);
+    filter: blur(120px);
+    opacity: 0.25;
+    z-index: 1;
+}
+
+.info-box { flex: 1.2; min-width: 320px; }
+
+#p-name {
+    font-size: 3.2rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.neon-text {
+    font-size: 2.8rem;
+    font-weight: 900;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description-text {
+    color: var(--text-dim);
+    margin: 30px 0;
+    font-size: 1.15rem;
+}
+
+/* 8. REVIEWS SECTION */
+.reviews-wrapper { padding: 50px; }
+
+.review-split {
+    display: flex;
+    gap: 60px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.form-side, .display-side { flex: 1; min-width: 300px; }
+
+.neon-form input, .neon-form select, .neon-form textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 100%;
+    padding: 18px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.neon-form input:focus {
+    border-color: var(--accent-blue);
+    background: rgba(255, 255, 255, 0.08);
+    outline: none;
+}
+
+.user-review {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--accent-purple);
+}
+
+/* 9. UTILITIES */
+.status-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 15px;
+}
+
+.sale-tag {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--accent-purple);
+    color: white;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 12px;
+    border-radius: 100px;
+    z-index: 10;
+}
+
+.variation-section h4 {
+    font-size: 0.8rem;
+    color: var(--accent-blue);
+    margin-top: 25px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.option-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.opt-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.opt-btn:hover, .opt-btn.active {
+    border-color: var(--accent-blue);
+    background: rgba(0, 210, 255, 0.1);
+}
+
+.shipping-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ship-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ship-card input[type="radio"] {
+    accent-color: var(--accent-blue);
+    transform: scale(1.2);
+}
+/* CART DRAWER */
+.cart-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7); display: none; z-index: 2500;
+}
+.cart-overlay.active { display: block; }
+
+.cart-drawer {
+    position: fixed; top: 0; right: -400px; width: 400px; height: 100%;
+    background: var(--card-bg); border-left: 1px solid var(--border-white);
+    transition: 0.4s ease; z-index: 3000; padding: 30px;
+    display: flex; flex-direction: column;
+}
+.cart-drawer.open { right: 0; }
+
+.cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.close-btn { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
+
+.cart-items { flex: 1; overflow-y: auto; }
+.cart-item { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
+.cart-item img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; }
+.item-info h4 { font-size: 0.9rem; margin-bottom: 5px; }
+.remove-item { background: none; border: none; color: #ff4d4d; font-size: 0.7rem; cursor: pointer; text-transform: uppercase; padding: 0; }
+
+.cart-footer { padding-top: 20px; border-top: 1px solid var(--border-white); }
+.cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; }
+/* Cart Shipping Section Styling */
+.cart-shipping-selection {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02); /* Very subtle glass tint */
+}
+
+.cart-shipping-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--accent-blue); /* Ensure this variable is in your :root */
+    text-transform: uppercase;
+}
+
+#cart-shipping-select {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    border: 1px solid rgba(0, 243, 255, 0.3); /* Dim neon border */
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif; /* Or your site's font */
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    appearance: none; /* Removes default browser arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300f3ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+}
+
+#cart-shipping-select:hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+#cart-shipping-select:focus {
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+}
+
+/* Style the dropdown options (Limited by browsers, but keeps it dark) */
+#cart-shipping-select option {
+    background: #111;
+    color: #fff;
+    padding: 10px;
+}
