@@ -1,4 +1,110 @@
 const inventory = [
+    //{
+          //  id: "1",
+           // name: "1",
+            //price: 1,
+            //oldPrice: 1,
+            //type: "physical or digital",
+            //image: ".."", // The default image
+            //description: "Descripition",
+            //colorways: [
+               // { name: "Normal", img: ".." },
+           // ],
+            //sizes: [
+            //    { us: "Xtra-Small" },
+            //    { us: "Small" },
+            //    { us: "Medium" },
+            //    { us: "Large" },
+            //    { us: "Xtra-Large" },
+            //    { us: "M  / W  / EU " },
+          //  ],
+           // shipping: [
+            //    { label: "Standard Shipping (12-19 Days)", price: 15 },
+             //   { label: "Express Shipping (5-10 Days)", price: 35 }
+           // ]
+        //},
+
+        {
+            id: "Lanvins",
+            name: "Lanvins",
+            price: 225,
+            oldPrice: 350,
+            type: "physical",
+            image: "https://cdn-images.farfetch-contents.com/28/07/16/92/28071692_57635786_2048.jpg", // The default image
+            description: "The ultimate skate-meets-basketball collaboration.",
+            colorways: [
+                { name: "All White", img: "https://cdn-images.farfetch-contents.com/29/78/83/45/29788345_58910209_2048.jpg" },
+                { name: "All Black", img: "https://cdn-images.farfetch-contents.com/28/07/16/92/28071692_57635786_2048.jpg" },
+                { name: "Reflective", img: "https://media-assets.grailed.com/prd/listing/temp/1d1a55c986c14f3496b366e802fdff08?w=1500" },
+            ],
+            sizes: [
+                { us: "M 3.5 / W 5 / EU 35"},
+                { us: "M 4.5 / W 6 / EU 36" },
+                { us: "M 5 / W 6.5-7 / EU 37" },
+                { us: "M 6 / W 7.5 / EU 38" },
+                { us: "M 7 / W 8-8.5 / EU 39" },
+                { us: "M 7.5 / W 9 / EU 40" },
+                { us: "M 8.5 / W 9.5-10 / EU 41" },
+                { us: "M 9 / W 10.5-11 / EU 42" },
+                { us: "M 10 / W 12 / EU 43" },
+                { us: "M 10.5 / W 12.5 / EU 44" },
+                { us: "M 11.5 / W 13 / EU 45" },
+                
+            ],
+            shipping: [
+                { label: "Standard Shipping (12-19 Days)", price: 20 },
+                { label: "Express Shipping (5-10 Days)", price: 40 }
+            ]
+        },
+        {
+            id: "Chrome-Hearts-Shirts",
+            name: "Chrome Heart Shirts",
+            price: 80,
+            oldPrice: 120,
+            type: "physical",
+            image: "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/068/941/541/original/904166_02.jpg.jpeg?action=crop&width=750", // The default image
+            description: "The ultimate skate-meets-basketball collaboration.",
+            colorways: [
+                { name: "Chrome Heart (regular T-shirt)", img: "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/068/941/541/original/904166_02.jpg.jpeg?action=crop&width=750" },
+                { name: "Chrome Heart (Las Vegas T-Shirt)", img: "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/102/778/118/original/1457653_02.jpg.jpeg?width=750" },
+            ],
+            sizes: [
+                { us: "Xtra-Small" },
+                { us: "Small" },
+                { us: "Medium" },
+                { us: "Large" },
+                { us: "Xtra-Large" },
+            ],
+            shipping: [
+                { label: "Standard Shipping (12-19 Days)", price: 15 },
+                { label: "Express Shipping (5-10 Days)", price: 35 }
+            ]
+        },
+        {
+            id: "Chrome-Hearts-Hoodies",
+            name: "Chrome Heart Hoodies",
+            price: 125,
+            oldPrice: 200,
+            type: "physical",
+            image: "https://image.goat.com/attachments/product_template_additional_pictures/images/101/385/827/medium/768202_02.jpg.jpeg", // The default image
+            description: "The ultimate skate-meets-basketball collaboration.",
+            colorways: [
+                { name: "Normal", img: "https://image.goat.com/attachments/product_template_additional_pictures/images/101/385/827/medium/768202_02.jpg.jpeg" },
+                { name: "Los Angelos", img: "https://shengliroadmarket.com/cdn/shop/files/chrome-hearts-los-angeles-exclusive-horseshoe-zip-up-hoodie-1492622.jpg?v=1768233847&width=1080" },
+                { name: "Rainbow (Black)", img: "https://images.stockx.com/images/Chrome-Hearts-Multi-Color-Cross-Cemetery-Hoodie-Black.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1622359708" },
+            ],
+            sizes: [
+                { us: "Xtra-Small" },
+                { us: "Small" },
+                { us: "Medium" },
+                { us: "Large" },
+                { us: "Xtra-Large" },
+            ],
+            shipping: [
+                { label: "Standard Shipping (12-19 Days)", price: 15 },
+                { label: "Express Shipping (5-10 Days)", price: 35 }
+            ]
+        },
     {
         id: "elite-vendor-bundle",
         name: "ELITE VENDOR BUNDLE",
@@ -110,78 +216,6 @@ const inventory = [
         description: "Direct access to the best electronic suppliers with receipts included."
     },
 
-    {
-        id: "Lanvins",
-        name: "Lanvins",
-        price: 225,
-        oldPrice: 350,
-        type: "physical",
-        image: "https://cdn-images.farfetch-contents.com/25/37/01/38/25370138_56798182_1000.jpg", // The default image
-        description: "The ultimate skate-meets-basketball collaboration.",
-        colorways: [
-            { name: "White Muli-Color", img: "https://cdn-images.farfetch-contents.com/25/37/01/38/25370138_56798182_1000.jpg" }, // Copy and Paste
-            { name: "Black Multi-Color", img: "https://cdn-images.farfetch-contents.com/25/37/01/40/25370140_56797163_1000.jpg" },
-            { name: "Gallery Dept White", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSpnSIDO4jbUQEcvbyReD8fwH7NhaipKl_ocgYL15zmTfwL4Kk" },
-            { name: "Gallery Dept Black (Blue Lace)", img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTC9VcvYk8P3Pr_Bw_o9llVpFzqbg7HiQcXPCIVpiBEY-Q_-DYVyTYH4IKLJEvF_ZYa_T7_TlI" },
-            { name: "All White", img: "https://cdn-images.farfetch-contents.com/29/78/83/45/29788345_58910209_2048.jpg" },
-            { name: "All Black", img: "https://cdn-images.farfetch-contents.com/28/07/16/92/28071692_57635786_2048.jpg" },
-            { name: "Reflective", img: "https://media-assets.grailed.com/prd/listing/temp/1d1a55c986c14f3496b366e802fdff08?w=1500" },
-        ],
-        sizes: [
-            { us: "M 8 / W 9.5", eu: "41" },
-            { us: "M 9 / W 10.5", eu: "42.5" },
-            { us: "M 10 / W 11.5", eu: "44" },
-            { us: "M 11 / W 12.5", eu: "45" }
-        ],
-        shipping: [
-            { label: "Standard Shipping (12-19 Days)", price: 15 },
-            { label: "Express Shipping (5-10 Days)", price: 35 }
-        ]
-    },
-    {
-        id: "Jordan-4s",
-        name: "JORDAN 4s",
-        price: 225,
-        oldPrice: 350,
-        type: "physical",
-        image: "images/j4-main.jpg", // The default image
-        description: "The ultimate skate-meets-basketball collaboration.",
-        colorways: [
-            { name: "Fire Red", img: "https://www.google.com/search?q=https://image.goat.com/750/thumbnails/001/015/011/original/12448_00.png.png" }
-        ],
-        sizes: [
-            { us: "M 8 / W 9.5", eu: "41" },
-            { us: "M 9 / W 10.5", eu: "42.5" },
-            { us: "M 10 / W 11.5", eu: "44" },
-            { us: "M 11 / W 12.5", eu: "45" }
-        ],
-        shipping: [
-            { label: "Standard Shipping (12-19 Days)", price: 15 },
-            { label: "Express Shipping (5-10 Days)", price: 35 }
-        ]
-    },
-    {
-        id: "Jordan-5s",
-        name: "JORDAN 5s",
-        price: 225,
-        oldPrice: 350,
-        type: "physical",
-        image: "images/j4-main.jpg", // The default image
-        description: "The ultimate skate-meets-basketball collaboration.",
-        colorways: [
-            { name: "Fire Red", img: "https://www.google.com/search?q=https://image.goat.com/750/thumbnails/001/015/011/original/12448_00.png.png" }
-        ],
-        sizes: [
-            { us: "M 8 / W 9.5", eu: "41" },
-            { us: "M 9 / W 10.5", eu: "42.5" },
-            { us: "M 10 / W 11.5", eu: "44" },
-            { us: "M 11 / W 12.5", eu: "45" }
-        ],
-        shipping: [
-            { label: "Standard Shipping (12-19 Days)", price: 15 },
-            { label: "Express Shipping (5-10 Days)", price: 35 }
-        ]
-    },
 ];
 
 export default inventory;

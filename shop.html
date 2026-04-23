@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Physical Items | Stqckzz Resell</title>
     <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* Enhancing search bar focus effect */
+        #product-search:focus {
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+    </style>
 </head>
 <body>
     <div id="cart-overlay" class="cart-overlay"></div>
@@ -47,31 +55,71 @@
         <p>Premium streetwear and exclusive drops.</p>
     </header>
 
+    <div class="search-container" style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+        <input type="text" id="product-search" placeholder="Search by name or color..." 
+        style="width: 100%; padding: 15px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; outline: none; font-size: 1rem; transition: 0.3s;">
+    </div>
+    
     <section id="shop-grid" class="product-grid"></section>
 
     <script type="module" src="js/cart.js"></script>
     <script type="module">
         import inventory from './js/products.js';
+        
         const grid = document.getElementById('shop-grid');
+        const searchInput = document.getElementById('product-search');
+
+        // Initial Filter: Only physical products
         const physicalItems = inventory.filter(item => item.type === 'physical');
-    
-        physicalItems.forEach(item => {
-            const oldPriceHTML = item.oldPrice ? `<span class="old-price">$${item.oldPrice}</span>` : '';
-            grid.innerHTML += `
-                <div class="card">
-                    ${item.oldPrice ? '<div class="sale-tag">SALE</div>' : ''}
-                    <img src="${item.image}" alt="${item.name}">
-                    <div class="card-info">
-                        <h3>${item.name}</h3>
-                        <div class="price-row">
-                            <span class="current-price">$${item.price}</span>
-                            ${oldPriceHTML}
+
+        // Function to render the grid
+        function renderProducts(productsToDisplay) {
+            grid.innerHTML = ''; // Clear current grid
+
+            if (productsToDisplay.length === 0) {
+                grid.innerHTML = `<p style="color: var(--text-dim); grid-column: 1/-1; text-align: center; padding: 50px;">No items found matching your search.</p>`;
+                return;
+            }
+
+            productsToDisplay.forEach(item => {
+                const oldPriceHTML = item.oldPrice ? `<span class="old-price">$${item.oldPrice}</span>` : '';
+                grid.innerHTML += `
+                    <div class="card">
+                        ${item.oldPrice ? '<div class="sale-tag">SALE</div>' : ''}
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="card-info">
+                            <h3>${item.name}</h3>
+                            <div class="price-row">
+                                <span class="current-price">$${item.price}</span>
+                                ${oldPriceHTML}
+                            </div>
+                            <a href="product-detail.html?id=${item.id}" class="btn">View Product</a>
                         </div>
-                        <a href="product-detail.html?id=${item.id}" class="btn">View Product</a>
                     </div>
-                </div>
-            `;
+                `;
+            });
+        }
+
+        // Live Search Event Listener
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            const filtered = physicalItems.filter(item => {
+                const matchesName = item.name.toLowerCase().includes(searchTerm);
+                const matchesDesc = item.description ? item.description.toLowerCase().includes(searchTerm) : false;
+                
+                // Also check colorway names if they exist
+                const matchesColor = item.colorways ? 
+                    item.colorways.some(c => c.name.toLowerCase().includes(searchTerm)) : false;
+
+                return matchesName || matchesDesc || matchesColor;
+            });
+
+            renderProducts(filtered);
         });
+
+        // Initial Render
+        renderProducts(physicalItems);
     </script>
 </body>
 </html>

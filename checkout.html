@@ -18,7 +18,6 @@
         }
         .shipping-form input:focus { border-color: var(--accent-blue); }
         
-        /* New Divider Styling */
         .method-divider {
             display: flex;
             align-items: center;
@@ -64,7 +63,7 @@
                     <button id="copy-btn" class="btn" style="background: var(--accent-purple); margin-bottom: 10px; width: 100%;">
                         1. Copy Order & Address 📋
                     </button>
-                    <a href="https://www.instagram.com/direct/t/17842499064523848/" target="_blank" class="btn secondary" style="width: 100%;">
+                    <a href="#" id="ig-dm-link" target="_blank" class="btn secondary" style="width: 100%;">
                         2. Paste in Instagram DM
                     </a>
                 </div>
@@ -88,6 +87,9 @@
     <script type="module">
         import { generateOrderMessage } from './js/cart.js';
 
+        // REPLACE THE NUMBER BELOW WITH YOUR NUMERIC INSTAGRAM ID
+        const myInstagramID = "17842499064523848"; 
+
         function getCustomerData() {
             return {
                 name: document.getElementById('cust-name').value || "Not provided",
@@ -103,8 +105,21 @@
             const message = generateOrderMessage(data);
             const encodedMessage = encodeURIComponent(message);
             
+            // Update SMS and Email
             document.getElementById('sms-link').href = `sms:+17088352450?body=${encodedMessage}`;
             document.getElementById('mail-link').href = `mailto:khyonhotz@gmail.com?subject=Order for ${data.name}&body=${encodedMessage}`;
+            
+            // Update Instagram Link based on device
+            const igLink = document.getElementById('ig-dm-link');
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Forces the Instagram App to open the chat
+                igLink.href = `instagram://direct_share?id=${myInstagramID}`;
+            } else {
+                // Desktop browser fallback
+                igLink.href = `https://www.instagram.com/direct/t/${myInstagramID}/`;
+            }
         }
 
         document.getElementById('shipping-form').addEventListener('input', updateLinks);
@@ -123,6 +138,7 @@
             });
         });
 
+        // Run once on load to initialize links
         updateLinks();
     </script>
 </body>
