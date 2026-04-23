@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Complete Your Order | Stqckzz</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css?v=1.1">
     <style>
         .copy-success { background: #2ecc71 !important; box-shadow: 0 0 20px rgba(46, 204, 113, 0.4) !important; }
         .shipping-form { display: grid; gap: 10px; margin: 20px 0; text-align: left; }
@@ -54,11 +57,8 @@
             </form>
 
             <div style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0;">
-                
                 <a href="#" id="sms-link" class="btn">Send via Text (SMS)</a>
-
                 <div class="method-divider">or</div>
-
                 <div style="border: 1px solid rgba(0, 243, 255, 0.2); padding: 15px; border-radius: 14px; background: rgba(0, 243, 255, 0.02);">
                     <button id="copy-btn" class="btn" style="background: var(--accent-purple); margin-bottom: 10px; width: 100%;">
                         1. Copy Order & Address 📋
@@ -67,17 +67,13 @@
                         2. Paste in Instagram DM
                     </a>
                 </div>
-
                 <div class="method-divider">or</div>
-
                 <a href="#" id="mail-link" class="btn">Send via Email</a>
             </div>
 
             <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: left;">
                 <h4 style="color: var(--accent-blue);">PAYMENT METHODS ACCEPTED:</h4>
-                <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 5px;">
-                    Zelle • CashApp • Apple Pay
-                </p>
+                <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 5px;">Zelle • CashApp • Apple Pay</p>
             </div>
             <br>
             <a href="shop.html" style="color: var(--accent-blue); text-decoration: none; font-size: 0.9rem;">← Continue Shopping</a>
@@ -85,9 +81,8 @@
     </div>
 
     <script type="module">
-        import { generateOrderMessage } from './js/cart.js';
+        import { generateOrderMessage } from './js/cart.js?v=1.1';
 
-        // REPLACE THE NUMBER BELOW WITH YOUR NUMERIC INSTAGRAM ID
         const myInstagramID = "17842499064523848"; 
 
         function getCustomerData() {
@@ -105,25 +100,20 @@
             const message = generateOrderMessage(data);
             const encodedMessage = encodeURIComponent(message);
             
-            // Update SMS and Email
             document.getElementById('sms-link').href = `sms:+17088352450?body=${encodedMessage}`;
             document.getElementById('mail-link').href = `mailto:khyonhotz@gmail.com?subject=Order for ${data.name}&body=${encodedMessage}`;
             
-            // Update Instagram Link based on device
             const igLink = document.getElementById('ig-dm-link');
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             
             if (isMobile) {
-                // Forces the Instagram App to open the chat
                 igLink.href = `instagram://direct_share?id=${myInstagramID}`;
             } else {
-                // Desktop browser fallback
                 igLink.href = `https://www.instagram.com/direct/t/${myInstagramID}/`;
             }
         }
 
         document.getElementById('shipping-form').addEventListener('input', updateLinks);
-
         const copyBtn = document.getElementById('copy-btn');
         copyBtn.addEventListener('click', () => {
             const message = generateOrderMessage(getCustomerData());
@@ -138,7 +128,6 @@
             });
         });
 
-        // Run once on load to initialize links
         updateLinks();
     </script>
 </body>

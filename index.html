@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <title>Stqckzz Resell | Home</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css?v=1.1">
 </head>
 <body>
     <div id="cart-overlay" class="cart-overlay"></div>
@@ -12,21 +13,14 @@
             <h2>YOUR CART</h2>
             <button id="close-cart" class="close-btn">&times;</button>
         </div>
-        
         <div id="cart-items" class="cart-items"></div>
-    
         <div class="cart-shipping-selection">
             <label for="cart-shipping-select" class="cart-shipping-label">Select Delivery Speed</label>
             <select id="cart-shipping-select">
-                <option value="15" data-label="Standard (12-19 Days)">
-                    📦 Standard Delivery — $15.00
-                </option>
-                <option value="35" data-label="Express (5-10 Days)">
-                    🚀 Express Delivery — $35.00
-                </option>
+                <option value="15" data-label="Standard (12-19 Days)">📦 Standard Delivery — $15.00</option>
+                <option value="35" data-label="Express (5-10 Days)">🚀 Express Delivery — $35.00</option>
             </select>
         </div>
-    
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
@@ -43,11 +37,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="vendors.html">Vendors</a></li>
-                <li>
-                    <div class="cart-icon" onclick="openCart()" style="cursor: pointer;">
-                        🛒
-                    </div>
-                </li>
+                <li><div class="cart-icon" onclick="openCart()" style="cursor: pointer;">🛒</div></li>
             </ul>
         </div>
     </nav>
@@ -59,9 +49,9 @@
 
     <section id="featured-grid" class="product-grid"></section>
 
-    <script type="module" src="js/cart.js"></script>
+    <script type="module" src="js/cart.js?v=1.1"></script>
     <script type="module">
-        import inventory from './js/products.js';
+        import inventory from './js/products.js?v=1.1';
         const grid = document.getElementById('featured-grid');
         inventory.slice(0, 3).forEach(item => {
             grid.innerHTML += `

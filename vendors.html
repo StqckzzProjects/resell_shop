@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <title>Vendors | Digital Access</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css?v=1.1">
 </head>
 <body>
     <div id="cart-overlay" class="cart-overlay"></div>
@@ -49,9 +50,9 @@
 
     <section id="vendor-grid" class="product-grid"></section>
 
-    <script type="module" src="js/cart.js"></script>
+    <script type="module" src="js/cart.js?v=1.1"></script>
     <script type="module">
-        import inventory from './js/products.js';
+        import inventory from './js/products.js?v=1.1';
         const grid = document.getElementById('vendor-grid');
         const digitalItems = inventory.filter(item => item.type === 'digital');
     
@@ -69,8 +70,7 @@
                         </div>
                         <a href="product-detail.html?id=${item.id}" class="btn">Get Access</a>
                     </div>
-                </div>
-            `;
+                </div>`;
         });
     </script>
 </body>
