@@ -1,6 +1,6 @@
 // js/cart.js
 
-// Initialize cart from localStorage
+// Initialize cart from localStorage - Using 'CULTURE_CART' consistently
 export let cart = JSON.parse(localStorage.getItem('CULTURE_CART')) || [];
 
 export function updateCartUI() {
@@ -8,22 +8,29 @@ export function updateCartUI() {
     const totalEl = document.getElementById('total-price');
     const shipSelect = document.getElementById('cart-shipping-select');
     
+    // Refresh the local cart variable from storage to ensure it's up to date
+    cart = JSON.parse(localStorage.getItem('CULTURE_CART')) || [];
+    
     if (!container || !totalEl) return;
 
     container.innerHTML = '';
     let subtotal = 0;
 
+    if (cart.length === 0) {
+        container.innerHTML = '<p style="text-align:center; padding: 20px; color: #888;">Your cart is empty</p>';
+    }
+
     cart.forEach((product, index) => {
         subtotal += product.price;
         container.innerHTML += `
-            <div class="cart-item">
-                <img src="${product.image}">
-                <div class="item-info">
-                    <h4>${product.name}</h4>
-                    <p>Size: ${product.size || 'Digital Access'}</p>
-                    <p>$${product.price.toFixed(2)}</p>
-                    <button class="remove-item" data-index="${index}">Remove</button>
+            <div class="cart-item" style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 8px;">
+                <img src="${product.image}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                <div class="item-info" style="flex: 1;">
+                    <h4 style="margin: 0; font-size: 0.9rem;">${product.name}</h4>
+                    <p style="margin: 2px 0; font-size: 0.8rem; color: #888;">Size: ${product.size || 'Standard'}</p>
+                    <p style="margin: 0; font-weight: bold; color: var(--accent-blue);">$${product.price.toFixed(2)}</p>
                 </div>
+                <button class="remove-item" data-index="${index}" style="background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 1.2rem;">&times;</button>
             </div>
         `;
     });
@@ -39,6 +46,7 @@ export function updateCartUI() {
     const finalTotal = subtotal + shippingCost;
     totalEl.innerText = `$${finalTotal.toFixed(2)}`;
 
+    // Store shipping info for checkout
     localStorage.setItem('SELECTED_SHIPPING', JSON.stringify({
         label: shippingLabel,
         price: shippingCost
@@ -72,6 +80,7 @@ export function generateOrderMessage(customerData = null) {
 export function openCart() {
     document.getElementById('cart-drawer').classList.add('open');
     document.getElementById('cart-overlay').classList.add('active');
+    updateCartUI();
 }
 
 export function closeCart() {
@@ -79,6 +88,7 @@ export function closeCart() {
     document.getElementById('cart-overlay').classList.remove('active');
 }
 
+// Global Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     updateCartUI();
 
@@ -88,15 +98,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.addEventListener('click', (e) => {
+        // FIXED: Targeted Removal Logic
         if (e.target.classList.contains('remove-item')) {
-            const index = e.target.getAttribute('data-index');
-            cart.splice(index, 1);
-            localStorage.setItem('CULTURE_CART', JSON.stringify(cart));
+            const index = parseInt(e.target.getAttribute('data-index'));
+            let currentCart = JSON.parse(localStorage.getItem('CULTURE_CART')) || [];
+            
+            // Remove ONLY the item at that index
+            currentCart.splice(index, 1);
+            
+            // Save and Refresh
+            localStorage.setItem('CULTURE_CART', JSON.stringify(currentCart));
             updateCartUI();
         }
 
         if (e.target.classList.contains('checkout-btn')) {
-            if (cart.length === 0) return alert("Your cart is empty!");
+            const currentCart = JSON.parse(localStorage.getItem('CULTURE_CART')) || [];
+            if (currentCart.length === 0) return alert("Your cart is empty!");
             window.location.href = 'checkout.html';
         }
 
@@ -106,8 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Map to window for HTML onclick attributes
 window.openCart = openCart;
 window.closeCart = closeCart;
 window.generateOrderMessage = generateOrderMessage;
-
-updateCartUI();

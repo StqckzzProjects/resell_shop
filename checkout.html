@@ -6,7 +6,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Complete Your Order | Stqckzz</title>
-    <link rel="stylesheet" href="css/main.css?v=1.1">
+    <link rel="stylesheet" href="css/main.css?v=1.2">
     <style>
         .copy-success { background: #2ecc71 !important; box-shadow: 0 0 20px rgba(46, 204, 113, 0.4) !important; }
         .shipping-form { display: grid; gap: 10px; margin: 20px 0; text-align: left; }
@@ -20,22 +20,11 @@
             font-family: inherit;
         }
         .shipping-form input:focus { border-color: var(--accent-blue); }
-        
         .method-divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 10px 0;
-            color: var(--text-dim);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            display: flex; align-items: center; text-align: center; margin: 10px 0;
+            color: var(--text-dim); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
         }
-        .method-divider::before, .method-divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+        .method-divider::before, .method-divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .method-divider:not(:empty)::before { margin-right: .5em; }
         .method-divider:not(:empty)::after { margin-left: .5em; }
     </style>
@@ -45,7 +34,6 @@
         <div class="glass-panel" style="text-align: center; max-width: 600px; margin: 0 auto;">
             <h1 class="neon-text">CHECKOUT</h1>
             <p class="description-text">Enter your delivery details, then pick a contact method.</p>
-            
             <form id="shipping-form" class="shipping-form">
                 <input type="text" id="cust-name" placeholder="Full Name" required>
                 <input type="text" id="cust-address" placeholder="Street Address" required>
@@ -55,22 +43,16 @@
                 </div>
                 <input type="text" id="cust-country" placeholder="Country" required>
             </form>
-
             <div style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0;">
                 <a href="#" id="sms-link" class="btn">Send via Text (SMS)</a>
                 <div class="method-divider">or</div>
                 <div style="border: 1px solid rgba(0, 243, 255, 0.2); padding: 15px; border-radius: 14px; background: rgba(0, 243, 255, 0.02);">
-                    <button id="copy-btn" class="btn" style="background: var(--accent-purple); margin-bottom: 10px; width: 100%;">
-                        1. Copy Order & Address 📋
-                    </button>
-                    <a href="#" id="ig-dm-link" target="_blank" class="btn secondary" style="width: 100%;">
-                        2. Paste in Instagram DM
-                    </a>
+                    <button id="copy-btn" class="btn" style="background: var(--accent-purple); margin-bottom: 10px; width: 100%;">1. Copy Order & Address 📋</button>
+                    <a href="#" id="ig-dm-link" target="_blank" class="btn secondary" style="width: 100%;">2. Paste in Instagram DM</a>
                 </div>
                 <div class="method-divider">or</div>
                 <a href="#" id="mail-link" class="btn">Send via Email</a>
             </div>
-
             <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: left;">
                 <h4 style="color: var(--accent-blue);">PAYMENT METHODS ACCEPTED:</h4>
                 <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 5px;">Zelle • CashApp • Apple Pay</p>
@@ -79,10 +61,8 @@
             <a href="shop.html" style="color: var(--accent-blue); text-decoration: none; font-size: 0.9rem;">← Continue Shopping</a>
         </div>
     </div>
-
     <script type="module">
-        import { generateOrderMessage } from './js/cart.js?v=1.1';
-
+        import { generateOrderMessage } from './js/cart.js?v=1.2';
         const myInstagramID = "17842499064523848"; 
 
         function getCustomerData() {
@@ -99,20 +79,16 @@
             const data = getCustomerData();
             const message = generateOrderMessage(data);
             const encodedMessage = encodeURIComponent(message);
-            
             document.getElementById('sms-link').href = `sms:+17088352450?body=${encodedMessage}`;
             document.getElementById('mail-link').href = `mailto:khyonhotz@gmail.com?subject=Order for ${data.name}&body=${encodedMessage}`;
-            
             const igLink = document.getElementById('ig-dm-link');
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
             if (isMobile) {
                 igLink.href = `instagram://direct_share?id=${myInstagramID}`;
             } else {
                 igLink.href = `https://www.instagram.com/direct/t/${myInstagramID}/`;
             }
         }
-
         document.getElementById('shipping-form').addEventListener('input', updateLinks);
         const copyBtn = document.getElementById('copy-btn');
         copyBtn.addEventListener('click', () => {
@@ -121,13 +97,9 @@
                 const originalText = copyBtn.innerText;
                 copyBtn.innerText = "COPIED! ✅";
                 copyBtn.classList.add('copy-success');
-                setTimeout(() => {
-                    copyBtn.innerText = originalText;
-                    copyBtn.classList.remove('copy-success');
-                }, 2000);
+                setTimeout(() => { copyBtn.innerText = originalText; copyBtn.classList.remove('copy-success'); }, 2000);
             });
         });
-
         updateLinks();
     </script>
 </body>

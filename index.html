@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Stqckzz Resell | Home</title>
-    <link rel="stylesheet" href="css/main.css?v=1.1">
+    <link rel="stylesheet" href="css/main.css?v=1.2">
 </head>
 <body>
     <div id="cart-overlay" class="cart-overlay"></div>
     <div id="cart-drawer" class="cart-drawer">
-        <div class="cart-header">
-            <h2>YOUR CART</h2>
-            <button id="close-cart" class="close-btn">&times;</button>
-        </div>
+        <div class="cart-header"><h2>YOUR CART</h2><button id="close-cart" class="close-btn">&times;</button></div>
         <div id="cart-items" class="cart-items"></div>
         <div class="cart-shipping-selection">
             <label for="cart-shipping-select" class="cart-shipping-label">Select Delivery Speed</label>
@@ -22,14 +21,10 @@
             </select>
         </div>
         <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="total-price">$0.00</span>
-            </div>
+            <div class="cart-total"><span>Total:</span><span id="total-price">$0.00</span></div>
             <button class="btn checkout-btn">Checkout Now</button>
         </div>
     </div>
-
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo"><a href="index.html">STQCKZZ<br><span>RESELL</span></a></div>
@@ -41,17 +36,11 @@
             </ul>
         </div>
     </nav>
-
-    <header class="hero">
-        <h1>YOUR FIRST STEP TO<br><span>SMARTER</span> RESELLING</h1>
-        <p>Trusted by 10,000+ resellers.</p>
-    </header>
-
+    <header class="hero"><h1>YOUR FIRST STEP TO<br><span>SMARTER</span> RESELLING</h1><p>Trusted by 10,000+ resellers.</p></header>
     <section id="featured-grid" class="product-grid"></section>
-
-    <script type="module" src="js/cart.js?v=1.1"></script>
+    <script type="module" src="js/cart.js?v=1.2"></script>
     <script type="module">
-        import inventory from './js/products.js?v=1.1';
+        import inventory from './js/products.js?v=1.2';
         const grid = document.getElementById('featured-grid');
         inventory.slice(0, 3).forEach(item => {
             grid.innerHTML += `
