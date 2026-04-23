@@ -34,6 +34,7 @@
         <div class="glass-panel" style="text-align: center; max-width: 600px; margin: 0 auto;">
             <h1 class="neon-text">CHECKOUT</h1>
             <p class="description-text">Enter your delivery details, then pick a contact method.</p>
+            
             <form id="shipping-form" class="shipping-form">
                 <input type="text" id="cust-name" placeholder="Full Name" required>
                 <input type="text" id="cust-address" placeholder="Street Address" required>
@@ -43,16 +44,25 @@
                 </div>
                 <input type="text" id="cust-country" placeholder="Country" required>
             </form>
+
             <div style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0;">
                 <a href="#" id="sms-link" class="btn">Send via Text (SMS)</a>
+                
                 <div class="method-divider">or</div>
+                
                 <div style="border: 1px solid rgba(0, 243, 255, 0.2); padding: 15px; border-radius: 14px; background: rgba(0, 243, 255, 0.02);">
-                    <button id="copy-btn" class="btn" style="background: var(--accent-purple); margin-bottom: 10px; width: 100%;">1. Copy Order & Address 📋</button>
-                    <a href="#" id="ig-dm-link" target="_blank" class="btn secondary" style="width: 100%;">2. Paste in Instagram DM</a>
+                    <button id="copy-btn" class="btn" style="background: var(--accent-purple); margin-bottom: 10px; width: 100%;">
+                        1. Copy Order & Address 📋
+                    </button>
+                    <a href="#" id="ig-dm-link" target="_blank" class="btn secondary" style="width: 100%;">
+                        2. Paste in Instagram DM
+                    </a>
                 </div>
+
                 <div class="method-divider">or</div>
                 <a href="#" id="mail-link" class="btn">Send via Email</a>
             </div>
+
             <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: left;">
                 <h4 style="color: var(--accent-blue);">PAYMENT METHODS ACCEPTED:</h4>
                 <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 5px;">Zelle • CashApp • Apple Pay</p>
@@ -61,9 +71,14 @@
             <a href="shop.html" style="color: var(--accent-blue); text-decoration: none; font-size: 0.9rem;">← Continue Shopping</a>
         </div>
     </div>
+
     <script type="module">
         import { generateOrderMessage } from './js/cart.js?v=1.2';
-        const myInstagramID = "17842499064523848"; 
+
+        // Your numeric thread ID for Desktop
+        const myThreadID = "17842499064523848";
+        // Your IG Handle for Mobile deep linking (most reliable)
+        const myHandle = "stqckzz"; 
 
         function getCustomerData() {
             return {
@@ -79,17 +94,28 @@
             const data = getCustomerData();
             const message = generateOrderMessage(data);
             const encodedMessage = encodeURIComponent(message);
+            
+            // SMS & Email
             document.getElementById('sms-link').href = `sms:+17088352450?body=${encodedMessage}`;
             document.getElementById('mail-link').href = `mailto:khyonhotz@gmail.com?subject=Order for ${data.name}&body=${encodedMessage}`;
+            
+            // Instagram Logic
             const igLink = document.getElementById('ig-dm-link');
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
             if (isMobile) {
-                igLink.href = `instagram://direct_share?id=${myInstagramID}`;
+                // 'username' is the most compatible way to open the DM screen on mobile apps
+                igLink.href = `instagram://direct_share?username=${myHandle}`;
             } else {
-                igLink.href = `https://www.instagram.com/direct/t/${myInstagramID}/`;
+                // Desktop uses your exact thread URL
+                igLink.href = `https://www.instagram.com/direct/t/${myThreadID}/`;
             }
         }
+
+        // Listen for typing in the form
         document.getElementById('shipping-form').addEventListener('input', updateLinks);
+
+        // Copy button function
         const copyBtn = document.getElementById('copy-btn');
         copyBtn.addEventListener('click', () => {
             const message = generateOrderMessage(getCustomerData());
@@ -97,9 +123,14 @@
                 const originalText = copyBtn.innerText;
                 copyBtn.innerText = "COPIED! ✅";
                 copyBtn.classList.add('copy-success');
-                setTimeout(() => { copyBtn.innerText = originalText; copyBtn.classList.remove('copy-success'); }, 2000);
+                setTimeout(() => { 
+                    copyBtn.innerText = originalText; 
+                    copyBtn.classList.remove('copy-success'); 
+                }, 2000);
             });
         });
+
+        // Initialize links on load
         updateLinks();
     </script>
 </body>
